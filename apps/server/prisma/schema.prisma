@@ -1,0 +1,45 @@
+// Datasource
+datasource db {
+    provider = "mysql"
+    url      = "mysql://root:kali@192.168.119.128:3306/chengfeng-db"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Attachment {
+    id        Int    @id @default(autoincrement())
+    filename  String
+    requests  Request[] @relation("AttachmentRequests")
+}
+
+model Request {
+    id            Int      @id @default(autoincrement())
+    username      String
+    email         String
+    theme         String
+    content       String
+    contact       String
+    fee           Float
+    attachmentId  Int?
+    attachment    Attachment? @relation(fields: [attachmentId], references: [id], onDelete: SetNull, name: "AttachmentRequests")
+    createdAt     DateTime  @default(now())
+}
+
+model Budget {
+    id        Int    @id @default(autoincrement())
+    reason    String
+    amount    Float
+    createdAt DateTime @default(now())
+}
+
+model Sponsorship {
+    username  String @id
+    amount    Float
+    createdAt DateTime @default(now())
+}
+
+// 视图定义（Prisma 不支持直接建视图，需用 SQL 脚本或迁移实现，以下为注释说明）
+// view users: (username, email, order_num, is_sponsor)
+// view budget_info: (in, out)
