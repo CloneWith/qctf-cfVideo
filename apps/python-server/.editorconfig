@@ -1,0 +1,3 @@
+# Configuration for Python backend server
+[*.py]
+indent_size = 4
