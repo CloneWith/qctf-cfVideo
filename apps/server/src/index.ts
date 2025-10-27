@@ -1,12 +1,12 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import healthRouter from './routes/health.js'
-import usersRouter from './routes/users.js'
-import requestsRouter from './routes/requests.js'
-import budgetRouter from './routes/budget.js'
-import sponsorshipRouter from './routes/sponsorship.js'
-import adminRouter from './routes/admin.js'
+import healthRouter from './routes/health'
+import usersRouter from './routes/users'
+import requestsRouter from './routes/requests'
+import budgetRouter from './routes/budget'
+import sponsorshipRouter from './routes/sponsorship'
+import adminRouter from './routes/admin'
 
 const app = express()
 app.use(cors())
