@@ -2,7 +2,6 @@
   "name": "server",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
@@ -16,7 +15,9 @@
     "@prisma/client": "^5.19.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
