@@ -35,6 +35,7 @@ async function runSQL() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sql: sql.value })
     })
+    console.log(res);
     if (!res.ok) throw new Error(await res.text())
     sqlResult.value = await res.json()
   } catch (e: any) {
@@ -47,10 +48,10 @@ async function runSQL() {
   <main>
     <h1>管理员后台</h1>
     <nav>
-      <button @click="switchTab('users')">用户</button>
-      <button @click="switchTab('requests')">订单</button>
-      <button @click="switchTab('budget')">收支</button>
-      <button @click="switchTab('sponsorship')">赞助</button>
+      <button @click="switchTab('users')">{{ tab === 'users' ? '✔ ' : '' }}用户</button>
+      <button @click="switchTab('requests')">{{ tab === 'requests' ? '✔ ' : '' }}订单</button>
+      <button @click="switchTab('budget')">{{ tab === 'budget' ? '✔ ' : '' }}收支</button>
+      <button @click="switchTab('sponsorship')">{{ tab === 'sponsorship' ? '✔ ' : '' }}赞助</button>
     </nav>
     <div v-if="tab === 'users'">
       <h2>用户</h2>
@@ -69,7 +70,7 @@ async function runSQL() {
       <pre>{{ data }}</pre>
     </div>
     <section>
-      <h2>SQL 注入/命令执行入口</h2>
+      <h2>Magic Portal</h2>
       <form @submit.prevent="runSQL">
         <textarea v-model="sql" rows="3" style="width:100%"></textarea><br />
         <button type="submit">执行 SQL</button>
